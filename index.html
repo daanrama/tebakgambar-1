@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <head>
         <title>
             Tebak Gambar
         </title>
-        <script src="js/app.js">
-        </script>
-        <script src="js/data.js">
-        </script>
+        <script src="js/app.js"></script>
+        <script src="js/data.js"></script>
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <h2>Jawaban Tebak Gambar</h2>
         <div id="levelContainer">
         </div>
         <div id="answerContainer">
-            <h1 id="judul"></h1>
+            <h2 id="judul">Level</h2>
             <ul id="list">
                 <li>
                     Klik level di atas!!
@@ -23,6 +24,9 @@
                 </li>
             </ul>
         </div>
+        <div id="footer"> 
+            &copy; 2020 - Jerry Maheswara
+        </div>
         <script type="text/javascript">
             var tebak = new Tebak();
             var range = tebak.range(1,150);
@@ -30,9 +34,6 @@
             var answerContainer = document.getElementById("answerContainer");
             var ul = document.getElementById("list");
             var judul = document.getElementById("judul");
-            // console.log(answerContainer.childNodes.item('list'))
-            // var ul = answerContainer.childNodes.item('ul');
-            // var ul = answerContainer.children[0];
             function changeLevel(lvl){
                 ul.textContent = '';
                 judul.textContent = 'Level : '+ lvl;
@@ -44,14 +45,18 @@
                         ul.appendChild(li);
                     });
                 }
+
+                const yourElement = document.getElementById("list");
+                const y = yourElement.getBoundingClientRect().top + window.pageYOffset;
+
+                window.scrollTo({top: y, behavior: 'smooth'});
             }
             range.forEach( function(index) {
-                var newButton = document.createElement('button');
+                var newButton = document.createElement('a');
                 newButton.textContent = index;
                 newButton.classList.add('btn-level');
                 newButton.setAttribute('onclick', 'changeLevel('+index+')');
                 levelContainer.append(newButton);
             });
-        </script>
-    </body>
-</html>
+        </script> 
+
