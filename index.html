@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Tebak Gambar
+        </title>
+        <script src="js/app.js">
+        </script>
+        <script src="js/data.js">
+        </script>
+    </head>
+    <body>
+        <div id="levelContainer">
+        </div>
+        <div id="answerContainer">
+            <h1 id="judul"></h1>
+            <ul id="list">
+                <li>
+                    Klik level di atas!!
+                </li>
+                <li>
+                    Lihat jawabannya di sini!!
+                </li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            var tebak = new Tebak();
+            var range = tebak.range(1,150);
+            var levelContainer = document.getElementById("levelContainer");
+            var answerContainer = document.getElementById("answerContainer");
+            var ul = document.getElementById("list");
+            var judul = document.getElementById("judul");
+            // console.log(answerContainer.childNodes.item('list'))
+            // var ul = answerContainer.childNodes.item('ul');
+            // var ul = answerContainer.children[0];
+            function changeLevel(lvl){
+                ul.textContent = '';
+                judul.textContent = 'Level : '+ lvl;
+                var jawab = tebak.answer(lvl); 
+                if (jawab.length > 0) {
+                    jawab.forEach( function(element) { 
+                        var li = document.createElement("li");
+                        li.appendChild(document.createTextNode(element));
+                        ul.appendChild(li);
+                    });
+                }
+            }
+            range.forEach( function(index) {
+                var newButton = document.createElement('button');
+                newButton.textContent = index;
+                newButton.classList.add('btn-level');
+                newButton.setAttribute('onclick', 'changeLevel('+index+')');
+                levelContainer.append(newButton);
+            });
+        </script>
+    </body>
+</html>
