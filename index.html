@@ -11,7 +11,10 @@
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h2>Jawaban Tebak Gambar</h2>
+        <div align="center">
+            <h2>Jawaban Tebak Gambar</h2>
+            <h3>~ Maulati Putri Maheswari ~</h3>
+        </div>
         <div id="levelContainer">
         </div>
         <div id="answerContainer">
@@ -25,7 +28,7 @@
                 </li>
             </ul>
         </div>
-        <div id="footer"> 
+        <div id="footer" align="center"> 
             &copy; 2020 - Jerry Maheswara
         </div>
         <script type="text/javascript">
@@ -46,10 +49,8 @@
                         ul.appendChild(li);
                     });
                 }
-
-                const yourElement = document.getElementById("list");
-                const y = yourElement.getBoundingClientRect().top + window.pageYOffset;
-
+                location.hash = lvl;
+                const y = ul.getBoundingClientRect().top + window.pageYOffset;
                 window.scrollTo({top: y, behavior: 'smooth'});
             }
             range.forEach( function(index) {
@@ -59,5 +60,16 @@
                 newButton.setAttribute('onclick', 'changeLevel('+index+')');
                 levelContainer.append(newButton);
             });
+
+            var resetButton = document.createElement('a');
+            resetButton.textContent = 'Reset';
+            resetButton.classList.add('btn-level');
+            resetButton.setAttribute('href', 'index.html');
+
+            levelContainer.append(resetButton);
+
+            if (window.location.hash) { 
+                changeLevel(window.location.hash.substr(1));
+            }
         </script> 
 

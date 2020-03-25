@@ -6,11 +6,15 @@
     margin: 2px;
     display: inline-table;
     font-size: 14pt;
+    text-decoration: none;
+    color: #000;
 }
-.btn-level:hover{
-    background-color: #eee;
+.btn-level:hover {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
 }
-#levelContainer { 
+#levelContainer {
     text-align: center;
     float: left;
     display: block;
